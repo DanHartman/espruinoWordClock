@@ -92,9 +92,9 @@ const handlePost = (req, cb) => {
     data.split('&').forEach(function(el) {
       var els = el.split('=')
       postData[els[0]] = decodeURIComponent(els[1])
-      connectToAP(postData.ip, postData.gw, postData.netmask, postData.ssid, postData.password)
-      cb()
     })
+    connectToAP(postData.ip, postData.gw, postData.netmask, postData.ssid, postData.password)
+    cb()
   })
 }
 
