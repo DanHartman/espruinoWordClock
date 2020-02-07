@@ -105,6 +105,7 @@ const pageRequest = (req, res) => {
     res.end(indexPage(aps))
   } else if (a.pathname=="/connect") {
     if (req.method === 'POST') {
+      print('post received')
       res.writeHead(200, {'Content-Type': 'text/html'})
       handlePost(req, () => {
         res.end(`connecting with given parameters`)
