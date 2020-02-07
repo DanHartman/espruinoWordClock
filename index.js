@@ -52,7 +52,7 @@ const indexPage = array => {
 	            <label for="netmask">Netmask:</label>
 	            <input type="text" id="netmask" name="netmask" />
 	          </li>
-                  <li>
+            <li>
 	            <button type="submit">Connect</button>
 	          </li>
 	        </ul>
