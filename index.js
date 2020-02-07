@@ -27,6 +27,11 @@ const indexPage = array => {
   return `
     <html>
       <body>
+        <style>
+          ul {
+            list-style: none;
+          }
+        </style>
         <form action="/" method="post">
           <ul>
 	          <li>
