@@ -32,7 +32,7 @@ const indexPage = array => {
             list-style: none;
           }
         </style>
-        <form action="/" method="post">
+        <form action="/connect" method="post">
           <ul>
 	          <li>
 	            <label for="ssid-select">Choose an SSID:</label>
