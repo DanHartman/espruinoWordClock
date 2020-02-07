@@ -29,33 +29,33 @@ const indexPage = array => {
       <body>
         <form action="/" method="post">
           <ul>
-	    <li>
-	      <label for="ssid-select">Choose an SSID:</label>
+	          <li>
+	            <label for="ssid-select">Choose an SSID:</label>
               <select name="ssid-select" id="ssid-select">
                 <option value="">--Please choose an option--</option>
                 ${aps.filter(hidden).map(options)}
               </select>
-	    </li>
-	    <li>
+	          </li>
+	          <li>
               <label for="password">Password:</label>
               <input type="password" id="password" name="password" />
             </li>
-	    <li>
-	      <label for="ip">IP:</label>
-	      <input type="text" id="ip" name="ip" />
-	    </li>
-	    <li>
-	      <label for="gateway">Gateway:</label>
-	      <input type="text" id="gateway" name="gateway" />
-	    </li>
-	    <li>
-	      <label for="netmask">Netmask:</label>
-	      <input type="text" id="netmask" name="netmask" />
-	    </li>
-            <li>
-	      <button type="submit">Connect</button>
-	    </li>
-	  </ul>
+	          <li>
+	            <label for="ip">IP:</label>
+	            <input type="text" id="ip" name="ip" />
+	          </li>
+	          <li>
+	            <label for="gateway">Gateway:</label>
+	            <input type="text" id="gateway" name="gateway" />
+	          </li>
+	          <li>
+	            <label for="netmask">Netmask:</label>
+	            <input type="text" id="netmask" name="netmask" />
+	          </li>
+                  <li>
+	            <button type="submit">Connect</button>
+	          </li>
+	        </ul>
         </form>
       </body>
     </html>`
