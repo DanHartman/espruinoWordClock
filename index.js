@@ -11,7 +11,7 @@ const scan = interval => {
   setTimeout(() => {
     wifi.scan((data, err) => {
       if(err) {
-        print('scan err')
+        console.log('scan err')
       } else {
         aps = data
       }
@@ -74,10 +74,10 @@ const connectToAP = (ip, gw, netmask, ssid, password='') => {
   }
   wifi.setIP(settings, err => {
     if(err) {
-      print(err)
+      console.log(err)
     } else {
       wifi.connect(ssid, { password: password }, () => {
-        print('connected')
+        console.log('connected')
         wifi.save()
       })
     }
@@ -93,6 +93,7 @@ const handlePost = (req, cb) => {
       var els = el.split('=')
       postData[els[0]] = decodeURIComponent(els[1])
     })
+    console.log(postData)
     connectToAP(postData.ip, postData.gw, postData.netmask, postData.ssid, postData.password)
     cb()
   })
@@ -105,7 +106,7 @@ const pageRequest = (req, res) => {
     res.end(indexPage(aps))
   } else if (a.pathname=="/connect") {
     if (req.method === 'POST') {
-      print('post received')
+      console.log('post received')
       res.writeHead(200, {'Content-Type': 'text/html'})
       handlePost(req, () => {
         res.end(`connecting with given parameters`)
