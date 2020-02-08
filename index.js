@@ -86,7 +86,7 @@ const connectToAP = (ip, gw, netmask, ssid, password='') => {
 
 const handlePost = (req, cb) => {
   var data =''
-  req.on('data', data += data)
+  req.on('data', reqData => data += reqData)
   req.on('end', () => {
     postData = {}
     data.split('&').forEach(function(el) {
