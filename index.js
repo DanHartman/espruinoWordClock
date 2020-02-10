@@ -35,8 +35,8 @@ const indexPage = array => {
         <form action="/connect" method="post">
           <ul>
 	          <li>
-	            <label for="ssid-select">Choose an SSID:</label>
-              <select name="ssid-select" id="ssid-select">
+	            <label for="ssid">Choose an SSID:</label>
+              <select name="ssid" id="ssid">
                 <option value="">--Please choose an option--</option>
                 ${aps.filter(hidden).map(options)}
               </select>
