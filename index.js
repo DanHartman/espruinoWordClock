@@ -72,16 +72,17 @@ const connectToAP = (ip, gw, netmask, ssid, password='') => {
     gw: gw,
     netmask: netmask
   }
-  wifi.setIP(settings, err => {
-    if(err) {
-      console.log(err)
-    } else {
+  console.log(ip, gw, netmaks, ssid, password)
+  // wifi.setIP(settings, err => {
+    // if(err) {
+      // console.log(err)
+    // } else {
       wifi.connect(ssid, { password: password }, () => {
         console.log('connected')
         wifi.save()
       })
-    }
-  })
+    // }
+  // })
 }
 
 const handlePost = (req, cb) => {
