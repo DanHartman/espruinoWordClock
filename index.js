@@ -1,7 +1,6 @@
 const wifi = require('Wifi')
 const pixelString = require('neopixel')
 const ping = require('Ping')
-var aps = []
 
 wifi.startAP('espruinoAP', {}, err => {
   if(err) throw err
@@ -25,7 +24,7 @@ const indexPage = array => {
 	            <label for="ssid">Choose an SSID:</label>
               <select name="ssid" id="ssid">
                 <option value="">--Please choose an option--</option>
-                ${aps.filter(hidden).map(options)}
+                ${array.filter(hidden).map(options)}
               </select>
 	          </li>
 	          <li>
