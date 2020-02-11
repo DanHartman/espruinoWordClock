@@ -81,6 +81,11 @@ const pageRequest = (req, res) => {
         res.end(connectionStatus)
       })
     }
+  } else if (a.pathname == '/neopixel') {
+    const dataString = [ 255, 0, 0 ]
+    require("neopixel").write(B15, dataString)
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.end(JSON.stringify(dataString))
   } else {
     res.writeHead(404, {'Content-Type': 'text/plain'})
     res.end(`404: Page ${a.pathname} not found`)
