@@ -83,7 +83,7 @@ const pageRequest = (req, res) => {
     }
   } else {
     res.writeHead(404, {'Content-Type': 'text/plain'})
-    res.end("404: Page "+a.pathname+" not found")
+    res.end(`404: Page ${a.pathname} not found`)
   }
 }
 require("http").createServer(pageRequest).listen(80)
