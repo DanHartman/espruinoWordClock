@@ -46,7 +46,7 @@ const handlePost = (req, cb) => {
   req.on('data', reqData => data += reqData)
   req.on('end', () => {
     postData = {}
-    data.split('&').forEach(function(el) {
+    data.split('&').forEach(el => {
       var els = el.split('=')
       postData[els[0]] = decodeURIComponent(els[1])
     })
