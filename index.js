@@ -65,11 +65,11 @@ const handlePost = (req, cb) => {
 const pageRequest = (req, res) => {
   var a = url.parse(req.url, true)
   if (a.pathname=="/") {
-    res.writeHead(200, {'Content-Type': 'text/html'})
     wifi.scan((data, err) => {
       if(err) {
         console.log('scan err')
       } else {
+        res.writeHead(200, {'Content-Type': 'text/html'})
         res.end(indexPage(data))
       }
     })
