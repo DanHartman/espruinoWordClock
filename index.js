@@ -76,6 +76,7 @@ const pageRequest = (req, res) => {
       } else {
         res.end(indexPage(data))
       }
+    })
   } else if (a.pathname=="/connect") {
     if (req.method === 'POST') {
       console.log('post received')
