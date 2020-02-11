@@ -46,18 +46,6 @@ const indexPage = array => {
               <label for="password">Password:</label>
               <input type="password" id="password" name="password" />
             </li>
-	          <li>
-	            <label for="ip">IP:</label>
-	            <input type="text" id="ip" name="ip" />
-	          </li>
-	          <li>
-	            <label for="gw">Gateway:</label>
-	            <input type="text" id="gw" name="gw" />
-	          </li>
-	          <li>
-	            <label for="netmask">Netmask:</label>
-	            <input type="text" id="netmask" name="netmask" />
-	          </li>
             <li>
 	            <button type="submit">Connect</button>
 	          </li>
@@ -67,26 +55,14 @@ const indexPage = array => {
     </html>`
 }
 
-const connectToAP = (ip, gw, netmask, ssid, password='') => {
-  const settings = {
-    ip: ip,
-    gw: gw,
-    netmask: netmask
-  }
-  console.log(ip, gw, netmask, ssid, password)
+const connectToAP = (ssid, password='', cb) => {
   wifi.connect(ssid, { password: password }, err => {
     if(err) {
       console.log(err)
     } else {
       console.log('connected')
-      wifi.setIP(settings, err => {
-        if(err) {
-          console.log(err)
-        } else {
-          console.log(wifi.getIP())
-          wifi.save()
-        }
-      })
+      wifi.save()
+      cb(wifi.getIP().ip)
     }
   })
 }
@@ -100,9 +76,7 @@ const handlePost = (req, cb) => {
       var els = el.split('=')
       postData[els[0]] = decodeURIComponent(els[1])
     })
-    console.log(postData)
-    connectToAP(postData.ip, postData.gw, postData.netmask, postData.ssid, postData.password)
-    cb()
+    connectToAP(postData.ssid, postData.password, cb)
   })
 }
 
@@ -115,8 +89,8 @@ const pageRequest = (req, res) => {
     if (req.method === 'POST') {
       console.log('post received')
       res.writeHead(200, {'Content-Type': 'text/html'})
-      handlePost(req, () => {
-        res.end(`connecting with given parameters`)
+      handlePost(req, ip => {
+        res.end(`connected, find me at ${ip}`)
       })
     }
   } else {
