@@ -74,13 +74,18 @@ const connectToAP = (ip, gw, netmask, ssid, password='') => {
     netmask: netmask
   }
   console.log(ip, gw, netmask, ssid, password)
-  wifi.setIP(settings, err => {
+  wifi.connect(ssid, { password: password }, err => {
     if(err) {
       console.log(err)
     } else {
-      wifi.connect(ssid, { password: password }, () => {
-        console.log('connected')
-        wifi.save()
+      console.log('connected')
+      wifi.setIP(settings, err => {
+        if(err) {
+          console.log(err)
+        } else {
+          console.log(wifi.getIP())
+          wifi.save()
+        }
       })
     }
   })
