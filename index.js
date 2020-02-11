@@ -50,8 +50,8 @@ const indexPage = array => {
 	            <input type="text" id="ip" name="ip" />
 	          </li>
 	          <li>
-	            <label for="gateway">Gateway:</label>
-	            <input type="text" id="gateway" name="gateway" />
+	            <label for="gw">Gateway:</label>
+	            <input type="text" id="gw" name="gw" />
 	          </li>
 	          <li>
 	            <label for="netmask">Netmask:</label>
@@ -72,17 +72,17 @@ const connectToAP = (ip, gw, netmask, ssid, password='') => {
     gw: gw,
     netmask: netmask
   }
-  console.log(ip, gw, netmaks, ssid, password)
-  // wifi.setIP(settings, err => {
-    // if(err) {
-      // console.log(err)
-    // } else {
+  console.log(ip, gw, netmask, ssid, password)
+  wifi.setIP(settings, err => {
+    if(err) {
+      console.log(err)
+    } else {
       wifi.connect(ssid, { password: password }, () => {
         console.log('connected')
         wifi.save()
       })
-    // }
-  // })
+    }
+  })
 }
 
 const handlePost = (req, cb) => {
