@@ -52,10 +52,11 @@ const handlePost = (req, cb) => {
     wifi.connect(postData.ssid, { password: postData.password }, err => {
       if(err) {
         console.log(err)
+        cb(err, null)
       } else {
         console.log('connected')
         wifi.save()
-        cb(wifi.getIP().ip)
+        cb(null, wifi.getIP().ip)
       }
     })
   })
@@ -75,9 +76,12 @@ const pageRequest = (req, res) => {
   } else if (a.pathname=="/connect") {
     if (req.method === 'POST') {
       console.log('post received')
-      res.writeHead(200, {'Content-Type': 'text/html'})
-      handlePost(req, ip => {
-        res.end(`connected, find me at ${ip}`)
+      handlePost(req, (err, ip) => {
+        res.writeHead(200, {'Content-Type': 'text/html'})
+        if(err) 
+          res.end(`Wifi Connect Error: ${err}`)
+        else
+          res.end(`connected, find me at ${ip}`)
       })
     }
   } else {
