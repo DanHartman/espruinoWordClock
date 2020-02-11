@@ -40,7 +40,7 @@ const indexPage = array => {
     </html>`
 }
 
-const handlePost = (req, cb) => {
+const handleConnect = (req, cb) => {
   var data =''
   req.on('data', reqData => data += reqData)
   req.on('end', () => {
@@ -76,7 +76,7 @@ const pageRequest = (req, res) => {
   } else if (a.pathname=="/connect") {
     if (req.method === 'POST') {
       console.log('post received')
-      handlePost(req, connectionStatus => {
+      handleConnect(req, connectionStatus => {
         res.writeHead(200, {'Content-Type': 'text/html'})
         res.end(connectionStatus)
       })
