@@ -1,5 +1,5 @@
 const wifi = require('Wifi')
-const pixelString = require("neopixel")
+const pixelString = require('neopixel')
 const ping = require('Ping')
 var aps = []
 
