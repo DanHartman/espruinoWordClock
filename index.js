@@ -41,18 +41,6 @@ const indexPage = array => {
     </html>`
 }
 
-const connectToAP = (ssid, password='', cb) => {
-  wifi.connect(ssid, { password: password }, err => {
-    if(err) {
-      console.log(err)
-    } else {
-      console.log('connected')
-      wifi.save()
-      cb(wifi.getIP().ip)
-    }
-  })
-}
-
 const handlePost = (req, cb) => {
   var data =''
   req.on('data', reqData => data += reqData)
@@ -62,7 +50,15 @@ const handlePost = (req, cb) => {
       var els = el.split('=')
       postData[els[0]] = decodeURIComponent(els[1])
     })
-    connectToAP(postData.ssid, postData.password, cb)
+    wifi.connect(postData.ssid, { password: postData.password }, err => {
+      if(err) {
+        console.log(err)
+      } else {
+        console.log('connected')
+        wifi.save()
+        cb(wifi.getIP().ip)
+      }
+    })
   })
 }
 
