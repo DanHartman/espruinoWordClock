@@ -83,7 +83,7 @@ const pageRequest = (req, res) => {
     }
   } else if (a.pathname == '/neopixel') {
     const dataString = [ 255, 0, 0 ]
-    require("neopixel").write(B15, dataString)
+    require("neopixel").write(D13, dataString)
     res.writeHead(200, {'Content-Type': 'text/html'})
     res.end(JSON.stringify(dataString))
   } else {
